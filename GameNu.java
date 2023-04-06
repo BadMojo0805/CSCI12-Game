@@ -28,23 +28,23 @@ class Game {
       */  
    public static int prompt(Scanner kb, String s) 
    {
-       int input = -1;
-       do 
-       { 
-          System.out.print(s);
-          while (!kb.hasNextInt())
-          {
+      int input = -1;
+      do 
+      { 
+         System.out.print(s);
+         while (!kb.hasNextInt())
+         {
             System.out.println("Invalid input.");
             kb.next();
-          }
-            input = kb.nextInt();
-            if (input < 0)
-            {
-              System.out.println("Invalid input.");
-            }
-       }
+         }
+         input = kb.nextInt();
+         if (input < 0)
+         {
+            System.out.println("Invalid input.");
+         }
+      }
              while (input < 0);
-             return input; 
+      return input; 
    }      
       //1. declare a varibale of type int to hold the user's input
         
@@ -62,21 +62,21 @@ class Game {
           // read the user's input and store it in the vaibale declared at step 1 of the method
          
       //change this line to return the variable you declared at the step 1 of the method
-   }
    
+  
    /* This method displays the intro given in the sample output. It must match excatly with the sample output. Refer to the provided
    output
    */
    public static void interact(Scanner kb)
    {
-        System.out.print("Hello, I am a computer playing a guessing game with you. What would you like to call me? ");
-        String name = kb.nextLine();
-        System.out.printf("Wow, I really like the name %s.%n", name);
-        System.out.print("What is your name? ");
-        String player = kb.nextLine();
-        System.out.printf("Hey %s, I am excited to play the guessing game with you.%n", player);
-        System.out.println("I will think of a number between a low and a high value entered by you and will allow you to guess until you get it.");
-        System.out.println("For each guess, I will give you a hint whether the right answer is higher or lower than your guess.\n"); 
+      System.out.print("Hello, I am a computer playing a guessing game with you. What would you like to call me? ");
+      String name = kb.nextLine();
+      System.out.printf("Wow, I really like the name %s.%n", name);
+      System.out.print("What is your name? ");
+      String player = kb.nextLine();
+      System.out.printf("Hey %s, I am excited to play the guessing game with you.%n", player);
+      System.out.println("I will think of a number between a low and a high value entered by you and will allow you to guess until you get it.");
+      System.out.println("For each guess, I will give you a hint whether the right answer is higher or lower than your guess.\n"); 
    }
    
    
@@ -89,18 +89,18 @@ class Game {
     
    public static String match(int guess, int randNum) 
    {
-     if (randNum < guess)
-     {
-     return "Higher";
-     }
-     else if (randNum > guess)
-     {
-     return "Lower";
-     }
-     else
-     {
-     return "Match";
-     } 
+      if (randNum < guess)
+      {
+         return "Higher";
+      }
+      else if (randNum > guess)
+      {
+         return "Lower";
+      }
+      else
+      {
+         return "Match";
+      } 
    }
 /*
   this method displays the result on the screen. 
@@ -124,40 +124,30 @@ class Game {
     */ 
    public static int funGame(Scanner console, int min, int max) 
    {
-        int min, max;
-           do 
-           {
-             min = prompt(console, "Enter a low value: ");
-             max = prompt(console, "Enter a high value: ");
-             if (max < min)
-             {
-                System.out.println("Invalid value. Max must be greater than min.");
-             }
-           } 
-           while (max < min);
-
-           int answer = rand.nextInt(max - min + 1) + min;
-           int guess;
-           int count = 0;
-
-           System.out.printf("I'm thinking of a number between %d and %d ...%n", min, max);
-           System.out.println("Give me a few seconds then enter any key to start the game");
-           kb.nextLine();
-           kb.nextLine();
-
-           while (true) 
-           {
-            count++;
-            guess = prompt(console, "guess? ");
-            String result = match(answer, guess);
-            System.out.println(result);
-                if (result.equals("Match"))
-                 {
-                        return(answer, count);
-                        break; //needed?????@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                 }
-           }
-       }    
+      Random rand = new Random();
+      int answer = rand.nextInt(max - min + 1) + min;
+      int guess = 0;
+      int count = 0;
+      console.nextInt();
+      
+      System.out.printf("I'm thinking of a number between %d and %d ...%n", min, max);
+      System.out.println("Give me a few seconds then enter any key to start the game");
+      console.nextLine();     
+   
+      while (guess != answer) 
+      {
+         count++;
+         guess = prompt(console, "guess? ");
+         String result = match(answer, guess);
+         System.out.println(result);
+         if (result.equals("Match"))
+         {
+            return count;
+         }
+      }
+      return count;
+   } 
+         
         //1. create a Random class object
         
         //2. Generate a random number between the given  min and max and store it in a variable. This variable is holding the computer pick
@@ -196,9 +186,9 @@ class Game {
                // display the the content of the variable result       
                 
                          
-      }//end of while loop
+      //end of while loop
       // change this line to return the variable you declared at step 4 which is the number of the guesses made
-   }
+   
    
    /*    LAST METHOD TO IMPLEMENT*/
 
@@ -217,17 +207,17 @@ class Game {
          max = prompt(console, s1);
          while (max>min);
          {
-          System.out.println("You entered an invalid value for max. Max must be greater than min. lets start all over again\n");
-           min = prompt(console, s);
-           max = prompt(console, s1);
+            System.out.println("You entered an invalid value for max. Max must be greater than min. lets start all over again\n");
+            min = prompt(console, s);
+            max = prompt(console, s1);
          } 
-         funGame(console, min, max)
+         funGame(console, min, max);
          numGames++;
          System.out.println("Would you like to play again?");
-            repeat = console.next();
-            System.out.println();
-         }
-    }             
+         repeat = console.next();
+         System.out.println();
+      }
+   }             
          
 
          
@@ -258,7 +248,7 @@ class Game {
          
        
       //call the method report and pass numGames and totGusses
-       
+}       
    
 
 
