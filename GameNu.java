@@ -128,11 +128,11 @@ class Game {
       int answer = rand.nextInt(max - min + 1) + min;
       int guess = 0;
       int count = 0;
-      console.nextInt();
+      
       
       System.out.printf("I'm thinking of a number between %d and %d ...%n", min, max);
       System.out.println("Give me a few seconds then enter any key to start the game");
-      console.nextLine();     
+          
    
       while (guess != answer) 
       {
@@ -205,7 +205,7 @@ class Game {
          String s1 = "Enter the high value:";
          min = prompt(console, s);
          max = prompt(console, s1);
-         while (max>min);
+         while (max<min)
          {
             System.out.println("You entered an invalid value for max. Max must be greater than min. lets start all over again\n");
             min = prompt(console, s);
